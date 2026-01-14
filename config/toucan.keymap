@@ -10,25 +10,22 @@
 
 / {
     behaviors {
-        td_d: tap_dance_d {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
+        lt: layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
             tapping-term-ms = <145>;
-            bindings = <&kp D>, <&mo 2>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
         };
         
-        td_k: tap_dance_k {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <145>;
-            bindings = <&kp K>, <&mo 2>;
-        };
-        
-        td_enter: tap_dance_enter {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
+        ht_enter: hold_tap_enter {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
             tapping-term-ms = <200>;
-            bindings = <&kp RET>, <&mo 5>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
         };
     };
 
@@ -46,10 +43,10 @@
         base {
             display-name = "BASE";
             bindings = <
-                &kp ESC   &kp Q    &kp W    &kp E    &kp R &kp T      &kp Y &kp U     &kp I     &kp O     &kp P    &kp DEL
-                &kp TAB   &kp A    &kp S    &td_d    &kp F &kp G      &kp H &kp J     &td_k     &kp L     &kp SEMI &kp FSLH
-                &kp LGUI  &kp LALT &kp Z    &kp X    &kp C &kp V      &kp B &kp N     &tog 1    &kp M     &kp COMMA &kp DOT
-                                   &kp LCTRL &kp LSHFT &kp SPACE       &kp BSPC &td_enter &kp LALT
+                &kp ESC   &kp Q    &kp W    &kp E         &kp R &kp T      &kp Y &kp U          &kp I         &kp O     &kp P    &kp DEL
+                &kp TAB   &kp A    &kp S    &lt 2 D     &kp F &kp G      &kp H &kp J          &lt 2 K     &kp L     &kp SEMI &kp FSLH
+                &kp LGUI  &kp LALT &kp Z    &kp X         &kp C &kp V      &kp B &kp N          &tog 1        &kp M     &kp COMMA &kp DOT
+                                   &kp LCTRL &kp LSHFT &kp SPACE       &kp BSPC &ht_enter 5 RET &kp LALT
             >;
         };
 
