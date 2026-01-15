@@ -63,9 +63,9 @@
         sym {
             display-name = "SYM";
             bindings = <
-                &trans    &trans     &kp KP_N7 &kp KP_N8 &kp KP_N9 &trans         &kp F4   &kp HOME  &kp UP    &kp END   &trans &trans
-                &trans    &kp KP_N0  &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_NUM     &kp F5   &kp LEFT  &kp DOWN  &kp RIGHT &trans &trans
-                &trans    &trans     &kp KP_N1 &kp KP_N2 &kp KP_N3 &trans         &kp F11  &kp F12   &kp F1    &kp F2    &kp F10 &trans
+                &bt BT_CLR    &trans     &kp KP_N7 &kp KP_N8 &kp KP_N9 &trans         &kp F4   &kp HOME  &kp UP    &kp END   &trans &trans
+                &bt BT_NXT    &kp KP_N0  &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_NUM     &kp F5   &kp LEFT  &kp DOWN  &kp RIGHT &trans &trans
+                &bt BT_PRV    &trans     &kp KP_N1 &kp KP_N2 &kp KP_N3 &trans         &kp F11  &kp F12   &kp F1    &kp F2    &kp F10 &trans
                                      &trans    &trans    &trans    &trans         &trans   &trans
             >;
         };
