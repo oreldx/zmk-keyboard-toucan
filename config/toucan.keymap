@@ -47,7 +47,7 @@
         };
 
         nav {
-            display-name = "NAVUM";
+            display-name = "NUM";
             bindings = <
                 &trans      &trans         &kp KP_N7      &kp KP_N8       &kp KP_N9       &trans                      &kp F4      &kp HOME      &kp UP         &kp END      &trans      &trans
                 &trans      &kp KP_N0      &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_NUM                  &kp F5      &kp LEFT      &kp DOWN       &kp RIGHT    &trans      &trans
@@ -66,7 +66,7 @@
             >;
         };
         mouse {
-            display-name = "MOUSE";
+            display-name = "NAV";
             bindings = <
                 &trans    &trans   &trans     &trans  &trans  &trans           &trans  &trans &trans &trans &trans &trans
                 &trans    &trans   &trans     &trans  &trans  &trans           &trans  &trans &trans &trans &trans &trans
