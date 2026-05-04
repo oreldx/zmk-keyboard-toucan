@@ -58,6 +58,16 @@
             >;
         };
 
+        mouse {
+            display-name = "NAV";
+            bindings = <
+                &trans    &trans   &trans     &trans  &trans  &tog 4           &trans  &trans &trans &trans &trans &trans
+                &trans    &trans   &trans     &trans  &trans  &trans           &trans  &trans &trans &trans &trans &bt BT_CLR
+                &trans    &trans   &trans     &trans  &trans  &trans           &trans  &trans &trans &trans &trans &bt BT_NXT
+                                         &mkp RCLK &mkp LCLK &mkp MCLK       &trans &trans &trans
+            >;
+        };
+
         base_mac {
             display-name = "BASE_MAC";
             bindings = <
@@ -85,16 +95,6 @@
                 &trans      &kp KP_N0      &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_NUM                  &kp F5      &kp LEFT      &kp DOWN       &kp RIGHT    &trans      &trans
                 &trans      &trans         &kp KP_N1      &kp KP_N2       &kp KP_N3       &trans                      &kp F11     &kp F12       &kp F1         &kp F2       &kp F10     &trans
                                                                         &trans      &trans     &trans              &trans      &trans     &trans
-            >;
-        };
-
-        mouse {
-            display-name = "NAV";
-            bindings = <
-                &trans    &trans   &trans     &trans  &trans  &tog 4           &trans  &trans &trans &trans &trans &trans
-                &trans    &trans   &trans     &trans  &trans  &trans           &trans  &trans &trans &trans &trans &bt BT_CLR
-                &trans    &trans   &trans     &trans  &trans  &trans           &trans  &trans &trans &trans &trans &bt BT_NXT
-                                         &mkp RCLK &mkp LCLK &mkp MCLK       &trans &trans &trans
             >;
         };
 
