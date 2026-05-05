@@ -16,7 +16,7 @@ SUPER   ALTG  w x c v            b n TL_2 , ; :
 
 -> With shift
 []  []  [] [] [] []        [] [] [] [] [] []
-[]  []  [] [] [] []        [] [] [] [] [] !
+[]  []  [] [] [] []        [] [] [] [] [] []
 []  []  [] [] [] []        [] [] []  ? .  /
              [] [] []     [] [] []
 
@@ -26,7 +26,7 @@ SUPER   ALTG  w x c v            b n TL_2 , ; :
 
 -> No modifier
 
-BLANK ²     é è ^ SCREEN       _ VOL+ MUTE VOL- BLANK BLANK
+BLANK ²     é è ^ SCREEN       _ VOL- MUTE VOL+ BLANK BLANK
 BLANK BLANK & " ' BLANK        - (    )    =    BLANK BLANK
 BLANK BLANK ù ç à BLANK        $ <    TL_2 *    BLANK BLANK
 
