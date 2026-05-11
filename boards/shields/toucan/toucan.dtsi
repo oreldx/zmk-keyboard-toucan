@@ -108,12 +108,22 @@
         status = "disabled";
         device = <&glidepoint_split>;
         input-processors = <&zip_xy_scaler 250 100>;
-        scroller {
-            layers = <2 6>;
+        scroller_layer2 {
+            layers = <2>;
             input-processors = <
                 &zip_xy_to_scroll_mapper
                 &zip_scroll_scaler 1 10
                 &zip_scroll_transform INPUT_TRANSFORM_X_INVERT
+            >;
+        };
+
+        // MacOS reverse to match natural scrolling
+        scroller_layer6 {
+            layers = <6>;
+            input-processors = <
+                &zip_xy_to_scroll_mapper
+                &zip_scroll_scaler 1 10
+                &zip_scroll_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
             >;
         };
     };
