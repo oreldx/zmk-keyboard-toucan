@@ -97,9 +97,9 @@
         spec_mac {
             display-name = "SPEC_MAC";
             bindings = <
-                &trans      &kp NUHS      &kp N2     &kp N7       &kp LBKT       &kp PSCRN                     &kp PLUS         &kp C_VOL_DN     &kp C_MUTE     &kp C_VOL_UP          &trans        &trans
+                &trans      &kp NUHS      &kp N2     &kp N7       &kp LBKT       &kp LS(LGUI(N4))              &kp PLUS         &kp C_VOL_DN     &kp C_MUTE     &kp C_VOL_UP          &trans        &trans
                 &trans      &kp NUBS      &lt 6 N1   &kp N3       &kp N4         &kp BSLH                      &kp EQUAL        &kp N5           &lt 6 MINUS    &kp FSLH              &trans        &trans
-                &trans      &trans        &kp SQT    &kp N9       &kp N0         &trans                        &kp RBKT         &kp GRAVE        &tog 5         &kp KP_MULTIPLY       &trans        &trans
+                &trans      &trans        &kp SQT    &kp N9       &kp N0         &kp LA(LS(L))                 &kp RBKT         &kp GRAVE        &tog 5         &kp KP_MULTIPLY       &trans        &trans
                                                               &trans       &trans       &trans              &trans         &trans       &trans
             >;
         };
@@ -107,9 +107,9 @@
         nav_mac {
             display-name = "NUM_MAC";
             bindings = <
-                &trans      &trans         &kp KP_N7      &kp KP_N8       &kp KP_N9       &trans                      &kp F4      &kp HOME      &kp UP         &kp END      &trans      &trans
-                &trans      &kp KP_N0      &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_NUM                  &kp F5      &kp LEFT      &kp DOWN       &kp RIGHT    &trans      &trans
-                &trans      &trans         &kp KP_N1      &kp KP_N2       &kp KP_N3       &trans                      &kp F11     &kp F12       &kp F1         &kp F2       &kp F10     &trans
+                &trans      &trans         &kp KP_N7      &kp KP_N8       &kp KP_N9       &trans                      &kp F4      &kp LG(LEFT)  &kp UP         &kp LG(RIGHT)  &trans      &trans
+                &trans      &kp KP_N0      &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_NUM                  &kp F5      &kp LEFT      &kp DOWN       &kp RIGHT      &trans      &trans
+                &trans      &trans         &kp KP_N1      &kp KP_N2       &kp KP_N3       &trans                      &kp F11     &kp F12       &kp F1         &kp F2         &kp F10     &trans
                                                                         &trans      &trans     &trans              &trans      &trans     &trans
             >;
         };
