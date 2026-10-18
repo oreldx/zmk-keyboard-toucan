@@ -12,6 +12,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/events/layer_state_changed.h>
 #include <zmk/events/usb_conn_state_changed.h>
 #include <zmk/events/wpm_state_changed.h>
+#include <zmk/events/position_state_changed.h>
 #include <zmk/battery.h>
 #include <zmk/ble.h>
 #include <zmk/display.h>
@@ -22,6 +23,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/split/central.h>
 
 #include "battery.h"
+#include "bongo_cat.h"
 #include "battery_peripheral.h"
 #include "layer.h"
 #include "output.h"
@@ -50,7 +52,11 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
 
     // Draw widgets
     draw_output_status(canvas, state);
-    draw_layer_status(canvas, state);
+    if (is_base_layer(state)) {
+        draw_bongo_cat(canvas, state);
+    } else {
+        draw_layer_status(canvas, state);
+    }
     draw_profile_status(canvas, state);
     draw_battery_status(canvas, state);
     draw_battery_peripheral_status(canvas, state);
@@ -195,6 +201,48 @@ ZMK_SUBSCRIPTION(widget_output_status, zmk_usb_conn_state_changed);
 #if defined(CONFIG_ZMK_BLE)
 ZMK_SUBSCRIPTION(widget_output_status, zmk_ble_active_profile_changed);
 #endif
+
+/**
+ * Bongo cat animation
+ **/
+
+static void bongo_cat_redraw(void) {
+    struct zmk_widget_screen *widget;
+    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) {
+        if (!is_sleep_screen_active() && is_base_layer(&widget->state)) {
+            draw_top(widget->obj, widget->cbuf, &widget->state);
+        }
+    }
+}
+
+static void bongo_cat_tap_work_cb(struct k_work *work) {
+    bongo_cat_tap();
+    bongo_cat_redraw();
+}
+
+static void bongo_cat_idle_work_cb(struct k_work *work) {
+    bongo_cat_idle();
+    bongo_cat_redraw();
+}
+
+static K_WORK_DEFINE(bongo_cat_tap_work, bongo_cat_tap_work_cb);
+static K_WORK_DELAYABLE_DEFINE(bongo_cat_idle_work, bongo_cat_idle_work_cb);
+
+static int bongo_cat_position_listener(const zmk_event_t *eh) {
+    const struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
+    if (ev == NULL || !ev->state) {
+        return ZMK_EV_EVENT_BUBBLE;
+    }
+
+    // Drawing must happen on the display work queue
+    k_work_submit_to_queue(zmk_display_work_q(), &bongo_cat_tap_work);
+    k_work_reschedule_for_queue(zmk_display_work_q(), &bongo_cat_idle_work,
+                                K_MSEC(BONGO_CAT_IDLE_DELAY_MS));
+    return ZMK_EV_EVENT_BUBBLE;
+}
+
+ZMK_LISTENER(nice_view_gem_bongo_cat, bongo_cat_position_listener);
+ZMK_SUBSCRIPTION(nice_view_gem_bongo_cat, zmk_position_state_changed);
 
 /**
  * Activity state handling for sleep screen
