@@ -13,7 +13,7 @@
 void draw_bongo_cat(lv_obj_t *canvas, const struct status_state *state);
 
 /** Switch to the next paw frame (alternates left/right). */
-void bongo_cat_tap(void);
+void bongo_cat_show_tap(void);
 
 /** Go back to the idle frame (both paws up). */
-void bongo_cat_idle(void);
+void bongo_cat_show_idle(void);

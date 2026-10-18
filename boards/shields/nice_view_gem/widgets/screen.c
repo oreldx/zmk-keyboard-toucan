@@ -216,12 +216,12 @@ static void bongo_cat_redraw(void) {
 }
 
 static void bongo_cat_tap_work_cb(struct k_work *work) {
-    bongo_cat_tap();
+    bongo_cat_show_tap();
     bongo_cat_redraw();
 }
 
 static void bongo_cat_idle_work_cb(struct k_work *work) {
-    bongo_cat_idle();
+    bongo_cat_show_idle();
     bongo_cat_redraw();
 }
 

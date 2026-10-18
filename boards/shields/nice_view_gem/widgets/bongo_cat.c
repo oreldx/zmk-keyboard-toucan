@@ -17,12 +17,12 @@ enum bongo_cat_frame {
 static enum bongo_cat_frame current_frame = BONGO_CAT_FRAME_IDLE;
 static bool next_paw_left = true;
 
-void bongo_cat_tap(void) {
+void bongo_cat_show_tap(void) {
     current_frame = next_paw_left ? BONGO_CAT_FRAME_LEFT : BONGO_CAT_FRAME_RIGHT;
     next_paw_left = !next_paw_left;
 }
 
-void bongo_cat_idle(void) { current_frame = BONGO_CAT_FRAME_IDLE; }
+void bongo_cat_show_idle(void) { current_frame = BONGO_CAT_FRAME_IDLE; }
 
 void draw_bongo_cat(lv_obj_t *canvas, const struct status_state *state) {
     const lv_img_dsc_t *frame;
