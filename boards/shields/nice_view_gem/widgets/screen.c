@@ -52,11 +52,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
 
     // Draw widgets
     draw_output_status(canvas, state);
-    if (is_base_layer(state)) {
-        draw_bongo_cat(canvas, state);
-    } else {
-        draw_layer_status(canvas, state);
-    }
+    draw_bongo_cat(canvas, state);
     draw_profile_status(canvas, state);
     draw_battery_status(canvas, state);
     draw_battery_peripheral_status(canvas, state);
@@ -209,7 +205,7 @@ ZMK_SUBSCRIPTION(widget_output_status, zmk_ble_active_profile_changed);
 static void bongo_cat_redraw(void) {
     struct zmk_widget_screen *widget;
     SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) {
-        if (!is_sleep_screen_active() && is_base_layer(&widget->state)) {
+        if (!is_sleep_screen_active()) {
             draw_top(widget->obj, widget->cbuf, &widget->state);
         }
     }

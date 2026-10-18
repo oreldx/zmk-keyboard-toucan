@@ -4,7 +4,7 @@
 #include "util.h"
 
 /**
- * Bongo cat shown in place of the layer name on base layers.
+ * Bongo cat shown on every layer, above the active layer name.
  * Each key press slams the next paw down; the cat goes back to idle
  * after BONGO_CAT_IDLE_DELAY_MS without key presses.
  */

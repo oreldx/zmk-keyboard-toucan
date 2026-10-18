@@ -504,3 +504,29 @@ const lv_img_dsc_t r_battery_10 = {
     .data_size = 144,
     .data = r_battery_10_map,
 };
+#ifndef LV_ATTRIBUTE_IMG_APPLE_LOGO
+#define LV_ATTRIBUTE_IMG_APPLE_LOGO
+#endif
+
+const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_APPLE_LOGO uint8_t apple_logo_map[] = {
+    0x00, 0x00, 0x00, 0xff, /*Color of index 0*/
+    0xff, 0xff, 0xff, 0xff, /*Color of index 1*/
+    0x08, /* ....#... */
+    0x10, /* ...#.... */
+    0x6c, /* .##.##.. */
+    0xfe, /* #######. */
+    0xfc, /* ######.. */
+    0xfc, /* ######.. */
+    0xfe, /* #######. */
+    0x6c, /* .##.##.. */
+};
+
+const lv_img_dsc_t apple_logo = {
+    .header.cf = LV_IMG_CF_INDEXED_1BIT,
+    .header.always_zero = 0,
+    .header.reserved = 0,
+    .header.w = 7,
+    .header.h = 8,
+    .data_size = 16,
+    .data = apple_logo_map,
+};
