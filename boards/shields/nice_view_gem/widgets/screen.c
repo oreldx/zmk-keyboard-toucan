@@ -211,8 +211,10 @@ static void bongo_cat_redraw(void) {
     }
 }
 
+static atomic_t bongo_cat_tap_left;
+
 static void bongo_cat_tap_work_cb(struct k_work *work) {
-    bongo_cat_show_tap();
+    bongo_cat_show_tap(atomic_get(&bongo_cat_tap_left));
     bongo_cat_redraw();
 }
 
@@ -229,6 +231,8 @@ static int bongo_cat_position_listener(const zmk_event_t *eh) {
     if (ev == NULL || !ev->state) {
         return ZMK_EV_EVENT_BUBBLE;
     }
+
+    atomic_set(&bongo_cat_tap_left, bongo_cat_position_is_left(ev->position));
 
     // Drawing must happen on the display work queue
     k_work_submit_to_queue(zmk_display_work_q(), &bongo_cat_tap_work);

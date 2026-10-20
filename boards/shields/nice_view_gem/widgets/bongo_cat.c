@@ -22,23 +22,30 @@ enum bongo_cat_frame {
 };
 
 static enum bongo_cat_frame current_frame = BONGO_CAT_FRAME_IDLE;
-static bool next_paw_left = true;
 
-void bongo_cat_show_tap(void) {
-    current_frame = next_paw_left ? BONGO_CAT_FRAME_LEFT : BONGO_CAT_FRAME_RIGHT;
-    next_paw_left = !next_paw_left;
+bool bongo_cat_position_is_left(uint32_t position) {
+    if (position < BONGO_CAT_THUMB_ROW_START) {
+        return position % BONGO_CAT_KEYS_PER_ROW < BONGO_CAT_KEYS_PER_ROW / 2;
+    }
+    return position < BONGO_CAT_THUMB_ROW_START + BONGO_CAT_THUMB_KEYS / 2;
+}
+
+void bongo_cat_show_tap(bool left) {
+    current_frame = left ? BONGO_CAT_FRAME_LEFT : BONGO_CAT_FRAME_RIGHT;
 }
 
 void bongo_cat_show_idle(void) { current_frame = BONGO_CAT_FRAME_IDLE; }
 
 void draw_bongo_cat(lv_obj_t *canvas, const struct status_state *state) {
     const lv_img_dsc_t *frame;
+    // Sprites are named from the cat's point of view: "right" slams the paw
+    // on the left of the screen, so it matches the left half of the keyboard
     switch (current_frame) {
     case BONGO_CAT_FRAME_LEFT:
-        frame = &bongo_cat_left;
+        frame = &bongo_cat_right;
         break;
     case BONGO_CAT_FRAME_RIGHT:
-        frame = &bongo_cat_right;
+        frame = &bongo_cat_left;
         break;
     default:
         frame = &bongo_cat_idle;
