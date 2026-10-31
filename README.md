@@ -2,59 +2,81 @@
 
 [The beekeeb Toucan Keyboard](https://beekeeb.com/toucan-keyboard/) is a wireless split 42-key column‑stagger keyboard that a display and a trackpad, with an aggressive stagger on the pinky columns.
 
-```text
+## Keymap
 
-***************
-**** BASE *****
-***************
+**Legend**
 
--> No modifier
-ESC     a     z e r t            y u i    o p SUPPR
-TAB     q     s d f g            h j k    l m !
-SUPER   ALTG  w x c v            b n TL_2 , ; :
-         CTRL SHIFT SPACE     DEL ENTER ALTG
+- `▽`: same key as without modifier
+- `✕`: no key (`BLANK`)
 
--> With shift
-[]  []  [] [] [] []        [] [] [] [] [] []
-[]  []  [] [] [] []        [] [] [] [] [] []
-[]  []  [] [] [] []        [] [] []  ? .  /
-             [] [] []     [] [] []
+### BASE
 
-***************
-**** SPEC *****
-***************
+**No modifier**
 
--> No modifier
+|       |      |       |       |   |   |     |       |       |      |   |   |         |
+|:-----:|:----:|:-----:|:-----:|:-:|:-:|:---:|:-----:|:-----:|:----:|:-:|:-:|:-------:|
+| ESC   | a    | z     | e     | r | t |     | y     | u     | i    | o | p | SUPPR   |
+| TAB   | q    | s     | d     | f | g |     | h     | j     | k    | l | m | !       |
+| SUPER | ALTG | w     | x     | c | v |     | b     | n     | TL_2 | , | ; | :       |
+|       |      |       | CTRL  | SHIFT | SPACE |     | DEL   | ENTER | ALTG |   |   |         |
 
-BLANK ²     é è ^ SCREEN       _ VOL- MUTE VOL+ BLANK BLANK
-BLANK BLANK & " ' BLANK        - (    )    =    BLANK BLANK
-BLANK BLANK ù ç à BLANK        $ <    TL_2 *    BLANK BLANK
+**With SHIFT**
 
--> With SHIFT
+|   |   |   |   |   |   |     |   |   |   |   |   |   |
+|:-:|:-:|:-:|:-:|:-:|:-:|:---:|:-:|:-:|:-:|:-:|:-:|:-:|
+| ▽ | ▽ | ▽ | ▽ | ▽ | ▽ |     | ▽ | ▽ | ▽ | ▽ | ▽ | ▽ |
+| ▽ | ▽ | ▽ | ▽ | ▽ | ▽ |     | ▽ | ▽ | ▽ | ▽ | ▽ | ▽ |
+| ▽ | ▽ | ▽ | ▽ | ▽ | ▽ |     | ▽ | ▽ | ▽ | ? | . | / |
+|   |   |   | ▽ | ▽ | ▽ |     | ▽ | ▽ | ▽ |   |   |   |
 
-[] [] [] [] [] []      [] [] [] [] [] []
-[] [] [] [] [] []      [] [] [] +  [] []
-[] [] %  [] [] []      [] >  [] [] [] []
-           [] [] []   [] [] []
+### SPEC
 
--> With ALT
+**No modifier**
 
-[] [] [] `  [] []       \  [] [] [] [] []
-[] [] [] #  { []        |  [  ]  }  [] []
-[] [] [] [] [] []       [] [] [] [] [] []
-           [] [] []   [] [] []
+|   |   |   |   |   |        |     |   |      |      |      |   |   |
+|:-:|:-:|:-:|:-:|:-:|:------:|:---:|:-:|:----:|:----:|:----:|:-:|:-:|
+| ✕ | ² | é | è | ^ | SCREEN |     | _ | VOL- | MUTE | VOL+ | ✕ | ✕ |
+| ✕ | ✕ | & | " | ' | ✕      |     | - | (    | )    | =    | ✕ | ✕ |
+| ✕ | ✕ | ù | ç | à | ✕      |     | $ | <    | TL_2 | *    | ✕ | ✕ |
 
-**************
-**** NUM *****
-**************
+**With SHIFT**
 
-BLANK BLANK 7 8 9 BLANK        F4   HOME UP END BLANK     BLANK
-BLANK 0     4 5 6 KP_NUM       F5   LEFT DOWN RIGHT BLANK BLANK
-BLANK BLANK 1 2 3 BLANK        F11  F12  F1   F2    F10   BLANK
-        BLANK BLANK BLANK    BLANK BLANK BLANK
-```
+|   |   |   |   |   |   |     |   |   |   |   |   |   |
+|:-:|:-:|:-:|:-:|:-:|:-:|:---:|:-:|:-:|:-:|:-:|:-:|:-:|
+| ▽ | ▽ | ▽ | ▽ | ▽ | ▽ |     | ▽ | ▽ | ▽ | ▽ | ▽ | ▽ |
+| ▽ | ▽ | ▽ | ▽ | ▽ | ▽ |     | ▽ | ▽ | ▽ | + | ▽ | ▽ |
+| ▽ | ▽ | % | ▽ | ▽ | ▽ |     | ▽ | > | ▽ | ▽ | ▽ | ▽ |
+|   |   |   | ▽ | ▽ | ▽ |     | ▽ | ▽ | ▽ |   |   |   |
 
-# License
+**With ALT**
+
+|   |   |   |         |   |   |     |     |   |   |   |   |   |
+|:-:|:-:|:-:|:-------:|:-:|:-:|:---:|:---:|:-:|:-:|:-:|:-:|:-:|
+| ▽ | ▽ | ▽ | `` ` `` | ▽ | ▽ |     | `\` | ▽ | ▽ | ▽ | ▽ | ▽ |
+| ▽ | ▽ | ▽ | #       | { | ▽ |     | \|  | [ | ] | } | ▽ | ▽ |
+| ▽ | ▽ | ▽ | ▽       | ▽ | ▽ |     | ▽   | ▽ | ▽ | ▽ | ▽ | ▽ |
+|   |   |   | ▽       | ▽ | ▽ |     | ▽   | ▽ | ▽ |   |   |   |
+
+### NUM
+
+|   |   |   |   |   |        |     |     |      |      |       |     |   |
+|:-:|:-:|:-:|:-:|:-:|:------:|:---:|:---:|:----:|:----:|:-----:|:---:|:-:|
+| ✕ | ✕ | 7 | 8 | 9 | ✕      |     | F4  | HOME | UP   | END   | ✕   | ✕ |
+| ✕ | 0 | 4 | 5 | 6 | KP_NUM |     | F5  | LEFT | DOWN | RIGHT | ✕   | ✕ |
+| ✕ | ✕ | 1 | 2 | 3 | ✕      |     | F11 | F12  | F1   | F2    | F10 | ✕ |
+|   |   |   | ✕ | ✕ | ✕      |     | ✕   | ✕    | ✕    |       |     |   |
+
+## Display
+
+The nice!view display runs a customised `nice_view_gem` shield ([boards/shields/nice_view_gem](boards/shields/nice_view_gem)) that shows:
+
+- **Output status**: USB or Bluetooth, and the active Bluetooth profile
+- **Battery level** of both halves (with charging indicator)
+- **Bongo Cat**: an animated cat that taps with alternating paws on each key press and goes back to idle after a short pause
+- **Active layer name** under the cat; layers whose name ends with `_MAC` are shown with an Apple logo instead of the suffix (e.g. `BASE_MAC` → Apple logo + `BASE`)
+- **Sleep screen** when the keyboard goes to sleep
+
+## License
 
 The code in this repo is available under the MIT license.
 

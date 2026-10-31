@@ -6,20 +6,28 @@
 #include "bongo_cat.h"
 #include "../assets/custom_fonts.h"
 
-LV_IMG_DECLARE(bongo_cat_idle);
-LV_IMG_DECLARE(bongo_cat_left);
-LV_IMG_DECLARE(bongo_cat_right);
 LV_IMG_DECLARE(apple_logo);
+
+extern const struct bongo_cat_variant bongo_cat_variant_base;
+extern const struct bongo_cat_variant bongo_cat_variant_spec;
+extern const struct bongo_cat_variant bongo_cat_variant_wheel;
+extern const struct bongo_cat_variant bongo_cat_variant_mouse;
+extern const struct bongo_cat_variant bongo_cat_variant_debug;
+
+// Variant per layer display-name (without the "_MAC" suffix); other layers get the base cat
+static const struct {
+    const char *layer;
+    const struct bongo_cat_variant *variant;
+} layer_variants[] = {
+    {"SPEC", &bongo_cat_variant_spec},
+    {"NUM", &bongo_cat_variant_wheel},  // arrows: the cat steers a ship wheel
+    {"NAV", &bongo_cat_variant_mouse},  // mouse buttons: the cat chases a mouse
+    {"DEBUG", &bongo_cat_variant_debug},
+};
 
 // Layers whose display-name ends with this suffix get an Apple logo instead
 #define MAC_LAYER_SUFFIX "_MAC"
 #define APPLE_LOGO_GAP 3
-
-enum bongo_cat_frame {
-    BONGO_CAT_FRAME_IDLE,
-    BONGO_CAT_FRAME_LEFT,
-    BONGO_CAT_FRAME_RIGHT,
-};
 
 static enum bongo_cat_frame current_frame = BONGO_CAT_FRAME_IDLE;
 
@@ -36,28 +44,16 @@ void bongo_cat_show_tap(bool left) {
 
 void bongo_cat_show_idle(void) { current_frame = BONGO_CAT_FRAME_IDLE; }
 
-void draw_bongo_cat(lv_obj_t *canvas, const struct status_state *state) {
-    const lv_img_dsc_t *frame;
-    // Sprites are named from the cat's point of view: "right" slams the paw
-    // on the left of the screen, so it matches the left half of the keyboard
-    switch (current_frame) {
-    case BONGO_CAT_FRAME_LEFT:
-        frame = &bongo_cat_right;
-        break;
-    case BONGO_CAT_FRAME_RIGHT:
-        frame = &bongo_cat_left;
-        break;
-    default:
-        frame = &bongo_cat_idle;
-        break;
+static const struct bongo_cat_variant *variant_for_layer(const char *layer_name) {
+    for (size_t i = 0; i < ARRAY_SIZE(layer_variants); i++) {
+        if (strcmp(layer_name, layer_variants[i].layer) == 0) {
+            return layer_variants[i].variant;
+        }
     }
+    return &bongo_cat_variant_base;
+}
 
-    lv_draw_img_dsc_t img_dsc;
-    lv_draw_img_dsc_init(&img_dsc);
-    // Center the cat horizontally, between the batteries (y <= 27) and the layer name
-    lv_canvas_draw_img(canvas, (SCREEN_WIDTH - frame->header.w) / 2, 32, frame, &img_dsc);
-
-    // Keep the layer name visible in small text under the cat
+void draw_bongo_cat(lv_obj_t *canvas, const struct status_state *state) {
     char layer_name_buf[16];
     const char *layer_name = zmk_keymap_layer_name(zmk_keymap_layer_index_to_id(state->layer_index));
     if (layer_name == NULL || layer_name[0] == '\0') {
@@ -77,6 +73,13 @@ void draw_bongo_cat(lv_obj_t *canvas, const struct status_state *state) {
         is_mac_layer = true;
     }
 
+    // Frames sit between the batteries (y <= 27) and the layer name (y >= 122)
+    const struct bongo_cat_sprite *sprite = &variant_for_layer(layer_name)->frames[current_frame];
+    lv_draw_img_dsc_t img_dsc;
+    lv_draw_img_dsc_init(&img_dsc);
+    lv_canvas_draw_img(canvas, sprite->x, sprite->y, sprite->img, &img_dsc);
+
+    // Keep the layer name visible in small text under the cat
     lv_draw_label_dsc_t label_dsc;
     init_label_dsc(&label_dsc, LVGL_FOREGROUND, &quinquefive_8, LV_TEXT_ALIGN_LEFT);
 
